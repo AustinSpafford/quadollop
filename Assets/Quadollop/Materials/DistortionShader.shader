@@ -25,7 +25,19 @@
 		void vert(
 			inout appdata_full inout_vertex)
 		{
-			inout_vertex.vertex.xyz += (inout_vertex.normal * 2.0f);
+			float3 in_world_vertex = mul(_Object2World, inout_vertex.vertex).xyz;
+			float in_r = in_world_vertex.x;
+			float in_i = in_world_vertex.z;
+			// OR
+			//float in_r = inout_vertex.texcoord.x;
+			//float in_i = inout_vertex.texcoord.y;
+
+			// "out = in^2"
+			float out_r = (in_r * in_r) - (in_i * in_i);
+			float out_i = 2 * (in_r * in_i);
+
+			inout_vertex.vertex.xyz += (out_r * mul(_World2Object, inout_vertex.normal));
+			//inout_vertex.vertex.y += out_r;
 		}
 
 		struct Input
