@@ -15,12 +15,18 @@
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf Standard fullforwardshadows vertex:vert
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+
+		void vert(
+			inout appdata_full inout_vertex)
+		{
+			inout_vertex.vertex.xyz += (inout_vertex.normal * 2.0f);
+		}
 
 		struct Input
 		{
@@ -31,17 +37,17 @@
 		half _Metallic;
 		fixed4 _Color;
 
-		void surf (
+		void surf(
 			Input input, 
-			inout SurfaceOutputStandard output)
+			inout SurfaceOutputStandard out_fragment)
 		{
 			// Albedo comes from a texture tinted by color
 			fixed4 color_sample = tex2D (_MainTex, input.uv_MainTex) * _Color;
-			output.Albedo = color_sample.rgb;
+			out_fragment.Albedo = color_sample.rgb;
 			// Metallic and smoothness come from slider variables
-			output.Metallic = _Metallic;
-			output.Smoothness = _Glossiness;
-			output.Alpha = color_sample.a;
+			out_fragment.Metallic = _Metallic;
+			out_fragment.Smoothness = _Glossiness;
+			out_fragment.Alpha = color_sample.a;
 		}
 		ENDCG
 	}
