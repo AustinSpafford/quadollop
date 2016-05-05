@@ -36,8 +36,8 @@
 			float out_r = (in_r * in_r) - (in_i * in_i);
 			float out_i = 2 * (in_r * in_i);
 
-			inout_vertex.vertex.xyz += (out_r * mul(_World2Object, inout_vertex.normal));
-			//inout_vertex.vertex.y += out_r;
+			inout_vertex.vertex.xyz += (out_r * mul(_World2Object, inout_vertex.normal)); // Trippy as hell on non-flat objects. You've been warned.
+			//inout_vertex.vertex.y += out_r; // Transforms in object-space, not world-space.
 		}
 
 		struct Input
