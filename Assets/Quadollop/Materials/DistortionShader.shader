@@ -2,10 +2,11 @@
 {
 	Properties
 	{
-		_Color ("Color", Color) = (1,1,1,1)
+		_Color ("Color", Color) = (1, 1, 1, 1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
+		_Glossiness ("Smoothness", Range(0, 1)) = 0.5
+		_Metallic ("Metallic", Range(0, 1)) = 0.0
+		_DistortionDegrees ("Distortion Degrees", Range(0, 360)) = 0
 	}
 
 	SubShader
@@ -19,6 +20,8 @@
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0 
+
+		static const float PI = 3.14159265f;
 		
 		fixed4 build_imaginary_color(
 			float point_i)
@@ -47,7 +50,22 @@
 			return result_color;
 		}
 
+		float2 rotate_complex_number(
+			float2 in_complex,
+			float distortion_degrees)
+		{
+			float projection_radians = (distortion_degrees * (PI / 180));
+
+			float distortion_cosine = cos(projection_radians);
+			float distortion_sine = sin(projection_radians);
+
+			return float2(
+				((in_complex.x * distortion_cosine) + (in_complex.y * distortion_sine)),
+				((in_complex.x * distortion_sine) - (in_complex.y * distortion_cosine)));
+		}
+
 		sampler2D _MainTex;
+		float _DistortionDegrees;
 
 		void vert(
 			inout appdata_full inout_vertex)
@@ -61,6 +79,11 @@
 			float2 out_complex = float2(
 				((in_complex.x * in_complex.x) - (in_complex.y * in_complex.y)),
 				(in_complex.x * in_complex.y));
+
+			out_complex = 
+				rotate_complex_number(
+					out_complex,
+					_DistortionDegrees);
 
 			inout_vertex.vertex.xyz += (out_complex.x * inout_vertex.normal); // Trippy as hell on non-flat objects. You've been warned.
 			//inout_vertex.vertex.y += out_complex.x; // Transforms in object-space, not world-space.
