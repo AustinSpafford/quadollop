@@ -64,6 +64,22 @@
 				((in_complex.x * distortion_sine) - (in_complex.y * distortion_cosine)));
 		}
 
+		float2 square_complex_number(
+			float2 in_complex)
+		{
+			return float2(
+				((in_complex.x * in_complex.x) - (in_complex.y * in_complex.y)),
+				(in_complex.x * in_complex.y));
+		}
+
+		float2 ripple_complex_number(
+			float2 in_complex)
+		{
+			return float2(
+				cos(in_complex.x) * cos(in_complex.y),
+				sin(in_complex.x) * sin(in_complex.y));
+		}
+
 		sampler2D _MainTex;
 		float _DistortionDegrees;
 
@@ -75,10 +91,8 @@
 			// OR
 			//float2 in_complex = inout_vertex.texcoord.xy;
 
-			// "out = in^2"
-			float2 out_complex = float2(
-				((in_complex.x * in_complex.x) - (in_complex.y * in_complex.y)),
-				(in_complex.x * in_complex.y));
+			//float2 out_complex = square_complex_number(in_complex);
+			float2 out_complex = ripple_complex_number(in_complex);
 
 			out_complex = 
 				rotate_complex_number(
