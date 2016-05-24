@@ -52,21 +52,20 @@
 		void vert(
 			inout appdata_full inout_vertex)
 		{
-			float3 in_world_vertex = mul(_Object2World, inout_vertex.vertex).xyz;
-			float in_r = in_world_vertex.x;
-			float in_i = in_world_vertex.z;
+			float3 world_vertex_pos = mul(_Object2World, inout_vertex.vertex).xyz;
+			float2 in_complex = world_vertex_pos.xz;
 			// OR
-			//float in_r = inout_vertex.texcoord.x;
-			//float in_i = inout_vertex.texcoord.y;
+			//float2 in_complex = inout_vertex.texcoord.xy;
 
 			// "out = in^2"
-			float out_r = (in_r * in_r) - (in_i * in_i);
-			float out_i = 2 * (in_r * in_i);
+			float2 out_complex = float2(
+				((in_complex.x * in_complex.x) - (in_complex.y * in_complex.y)),
+				(in_complex.x * in_complex.y));
 
-			inout_vertex.vertex.xyz += (out_r * inout_vertex.normal); // Trippy as hell on non-flat objects. You've been warned.
-			//inout_vertex.vertex.y += out_r; // Transforms in object-space, not world-space.
+			inout_vertex.vertex.xyz += (out_complex.x * inout_vertex.normal); // Trippy as hell on non-flat objects. You've been warned.
+			//inout_vertex.vertex.y += out_complex.x; // Transforms in object-space, not world-space.
 
-			inout_vertex.color *= build_imaginary_color(out_i);
+			inout_vertex.color *= build_imaginary_color(out_complex.y);
 		}
 
 		struct Input
