@@ -15,6 +15,7 @@
 		LOD 200
 		
 		CGPROGRAM
+
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows vertex:vert
 
@@ -127,6 +128,7 @@
 			out_fragment.Smoothness = _Glossiness;
 			out_fragment.Alpha = color_sample.a;
 		}
+
 		ENDCG
 	}
 }
