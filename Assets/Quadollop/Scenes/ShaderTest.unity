@@ -166,11 +166,151 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 268106549}
   m_LocalRotation: {x: 0.39246106, y: -0.314953, z: 0.1453853, w: 0.8518463}
-  m_LocalPosition: {x: 0.39, y: 0.354, z: -0.55}
+  m_LocalPosition: {x: 2.236, y: 3.9, z: -3.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!21 &305579984
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DistortionMaterial (Instance)
+  m_Shader: {fileID: 4800000, guid: 6d923bf95f7d1094e940d2a56b2c811a, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ParallaxMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OcclusionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailMask
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailAlbedoMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _SrcBlend
+        second: 1
+      data:
+        first:
+          name: _DstBlend
+        second: 0
+      data:
+        first:
+          name: _Cutoff
+        second: 0.5
+      data:
+        first:
+          name: _Glossiness
+        second: 0.5
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _DistortionDegrees
+        second: 0
+      data:
+        first:
+          name: _Parallax
+        second: 0.02
+      data:
+        first:
+          name: _ZWrite
+        second: 1
+      data:
+        first:
+          name: _BumpScale
+        second: 1
+      data:
+        first:
+          name: _OcclusionStrength
+        second: 1
+      data:
+        first:
+          name: _DetailNormalMapScale
+        second: 1
+      data:
+        first:
+          name: _UVSec
+        second: 0
+      data:
+        first:
+          name: _Mode
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &354325272
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +516,7 @@ Prefab:
     - target: {fileID: 2300004, guid: 6953661e9ef40a44da52ba9d1936df14, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fb14911c2c57e054ab6d2e4fca1572d3, type: 2}
+      objectReference: {fileID: 305579984}
     - target: {fileID: 100000, guid: 6953661e9ef40a44da52ba9d1936df14, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -449,6 +589,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &1337064496 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 6953661e9ef40a44da52ba9d1936df14, type: 3}
+  m_PrefabInternal: {fileID: 1090786891}
+--- !u!114 &1337064497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1337064496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a6d05ec98af784a82fce4bbe4a3769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CycleSeconds: 5
 --- !u!1001 &1507413889
 Prefab:
   m_ObjectHideFlags: 0
@@ -522,6 +678,7 @@ GameObject:
   - 33: {fileID: 1957866712}
   - 135: {fileID: 1957866711}
   - 23: {fileID: 1957866710}
+  - 114: {fileID: 1957866714}
   m_Layer: 0
   m_Name: distortion_sphere
   m_TagString: Untagged
@@ -586,3 +743,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1957866714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957866709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a6d05ec98af784a82fce4bbe4a3769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CycleSeconds: 2
